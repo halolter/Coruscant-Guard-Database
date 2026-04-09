@@ -1,0 +1,24 @@
+body.terminal {
+  background: black;
+  color: #00ff00;
+  font-family: monospace;
+  padding: 20px;
+}
+
+body.main {
+  background: #0b0b0f;
+  color: white;
+  font-family: Arial;
+}
+
+.red {
+  color: #ff3b3b;
+}
+
+.card {
+  background: #111;
+  padding: 15px;
+  margin: 10px;
+  border: 1px solid #ff3b3b;
+  cursor: pointer;
+}
