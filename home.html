@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Coruscant Guard Database</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="main">
+
+<h1 class="red">Coruscant Guard Database</h1>
+
+<h2>Companies</h2>
+
+<div class="card" onclick="openCompany('Guard')">Guard Company</div>
+<div class="card" onclick="openCompany('Riot')">Riot Company</div>
+
+<div id="content"></div>
+
+<script>
+const companies = {
+  Guard: [
+    {name: "Captain Cutter", desc: "WIP"},
+    {name: "EXAMPLE", desc: "WIP"}
+  ],
+  #Riot: [
+    {name: "Captain Fox", desc: "WIP"}
+  ]
+};
+
+function openCompany(name) {
+  let html = "<h3>" + name.toUpperCase() + "</h3>";
+
+  companies[name].forEach(member => {
+    html += `<div class="card" onclick="openMember('${member.name}', '${member.desc}')">${member.name}</div>`;
+  });
+
+  document.getElementById("content").innerHTML = html;
+}
+
+function openMember(name, desc) {
+  document.getElementById("content").innerHTML = `
+    <h2>${name}</h2>
+    <p>${desc}</p>
+    <button onclick="location.reload()">Back</button>
+  `;
+}
+</script>
+
+</body>
+</html>
