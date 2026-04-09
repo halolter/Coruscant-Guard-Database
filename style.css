@@ -1,24 +1,18 @@
 body.terminal {
   background: black;
-  color: #00ff00;
+  color: white; /* changed from green */
   font-family: monospace;
+  font-size: 20px; /* bigger text */
   padding: 20px;
 }
 
-body.main {
-  background: #0b0b0f;
-  color: white;
-  font-family: Arial;
+.cursor {
+  display: inline-block;
+  width: 10px;
+  background: white;
+  animation: blink 1s infinite;
 }
 
-.red {
-  color: #ff3b3b;
-}
-
-.card {
-  background: #111;
-  padding: 15px;
-  margin: 10px;
-  border: 1px solid #ff3b3b;
-  cursor: pointer;
+@keyframes blink {
+  50% { opacity: 0; }
 }
