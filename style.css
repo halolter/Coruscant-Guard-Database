@@ -1,19 +1,67 @@
-body.terminal {
-  background: black;
-  color: white; /* changed from green */
-  font-family: monospace;
-  font-size: 20px; /* bigger text */
+body.main {
+  background: #0b0b0f;
+  color: #e4e4e4;
+  font-family: Arial;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  padding: 40px;
+  gap: 40px;
+}
+
+/* LEFT SIDE */
+.left {
+  flex: 3;
+}
+
+.left h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.left h2 {
+  margin-top: 40px;
+  color: #ffffff;
+}
+
+.left p {
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* COMPANY BUTTONS */
+.company {
+  background: #111;
+  padding: 15px;
+  margin: 10px 0;
+  border: 1px solid #ff3b3b;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.company:hover {
+  background: #1a1a1a;
+}
+
+/* RIGHT PANEL */
+.right {
+  flex: 1;
+}
+
+.info-card {
+  background: #0f1a14;
+  border: 1px solid #1f7a4f;
   padding: 20px;
+  border-radius: 10px;
 }
 
-.cursor {
-  display: inline-block;
-  width: 10px;
-  background: white;
-  animation: blink 1s infinite;
+/* MEMBER CARDS */
+.member {
+  background: #111;
+  padding: 12px;
+  margin: 8px 0;
+  border: 1px solid #555;
+  cursor: pointer;
 }
-
-@keyframes blink {
-  50% { opacity: 0; }
-}
-
