@@ -1,38 +1,51 @@
-const content = document.getElementById("content");
+// WAIT until page loads (fixes your main issue)
+document.addEventListener("DOMContentLoaded", () => {
 
-const companies = {
-  alpha: [
-    {name: "Member One", desc: "This is a placeholder description."},
-    {name: "Member Two", desc: "Another placeholder description."}
-  ],
-  beta: [
-    {name: "Member Three", desc: "Beta company member."}
-  ]
-};
+  const content = document.getElementById("content");
 
-function openCompany(name) {
-  let html = `<h2>${name.toUpperCase()} COMPANY</h2>`;
+  const companies = {
+    alpha: [
+      { name: "Member One", desc: "Placeholder description." },
+      { name: "Member Two", desc: "Another placeholder." }
+    ],
+    beta: [
+      { name: "Member Three", desc: "Beta member." }
+    ]
+  };
 
-  companies[name].forEach(member => {
-    html += `
-      <div class="member" onclick="openMember('${member.name}', '${member.desc}')">
-        ${member.name}
-      </div>
+  // OPEN COMPANY
+  window.openCompany = function(name) {
+    let html = `<h2>${name.toUpperCase()} COMPANY</h2>`;
+
+    companies[name].forEach(member => {
+      html += `
+        <div class="member"
+             data-name="${member.name}"
+             data-desc="${member.desc}"
+             onclick="openMember(this)">
+          ${member.name}
+        </div>
+      `;
+    });
+
+    content.innerHTML = html;
+  };
+
+  // OPEN MEMBER
+  window.openMember = function(el) {
+    const name = el.dataset.name;
+    const desc = el.dataset.desc;
+
+    content.innerHTML = `
+      <h2>${name}</h2>
+      <p>${desc}</p>
+      <button onclick="goBack()">Back</button>
     `;
-  });
+  };
 
-  content.innerHTML = html;
-}
+  // BACK BUTTON
+  window.goBack = function() {
+    content.innerHTML = "";
+  };
 
-function openMember(name, desc) {
-  content.innerHTML = `
-    <h2>${name}</h2>
-    <p>${desc}</p>
-    <button onclick="goBack()">Back</button>
-  `;
-}
-
-function goBack() {
-  content.innerHTML = "";
-}
-
+});
