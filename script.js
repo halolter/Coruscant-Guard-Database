@@ -1,85 +1,38 @@
-const terminal = document.getElementById("terminal");
+const content = document.getElementById("content");
 
-const PASSWORD = "Coruscant Empire"; // <<< CHANGE THIS
+const companies = {
+  alpha: [
+    {name: "Member One", desc: "This is a placeholder description."},
+    {name: "Member Two", desc: "Another placeholder description."}
+  ],
+  beta: [
+    {name: "Member Three", desc: "Beta company member."}
+  ]
+};
 
-let lines = [
-  "Initializing system...",
-  "Connecting to Coruscant Security Grid...",
-  "Access Required."
-];
+function openCompany(name) {
+  let html = `<h2>${name.toUpperCase()} COMPANY</h2>`;
 
-let lineIndex = 0;
-let charIndex = 0;
+  companies[name].forEach(member => {
+    html += `
+      <div class="member" onclick="openMember('${member.name}', '${member.desc}')">
+        ${member.name}
+      </div>
+    `;
+  });
 
-function typeEffect() {
-  if (lineIndex < lines.length) {
-    if (charIndex < lines[lineIndex].length) {
-      terminal.innerHTML += lines[lineIndex][charIndex];
-      charIndex++;
-      setTimeout(typeEffect, 40);
-    } else {
-      terminal.innerHTML += "<br>";
-      lineIndex++;
-      charIndex = 0;
-      setTimeout(typeEffect, 300);
-    }
-  } else {
-    startInput();
-  }
+  content.innerHTML = html;
 }
 
-let input = "";
-
-function startInput() {
-  terminal.innerHTML += "<br>> ";
-  updateCursor();
+function openMember(name, desc) {
+  content.innerHTML = `
+    <h2>${name}</h2>
+    <p>${desc}</p>
+    <button onclick="goBack()">Back</button>
+  `;
 }
 
-function updateCursor() {
-  terminal.innerHTML = terminal.innerHTML.replace(/<span class="cursor"><\/span>/g, "");
-  terminal.innerHTML += '<span class="cursor"></span>';
+function goBack() {
+  content.innerHTML = "";
 }
-
-document.addEventListener("keydown", function(e) {
-  const cursor = document.querySelector(".cursor");
-  if (!cursor) return;
-
-  if (e.key === "Backspace") {
-    input = input.slice(0, -1);
-  } else if (e.key === "Enter") {
-    checkPassword();
-    return;
-  } else if (e.key.length === 1) {
-    input += e.key;
-  }
-
-  redrawInput();
-});
-
-function redrawInput() {
-  let content = terminal.innerHTML.split(">")[0];
-  terminal.innerHTML = content + "> " + input;
-  updateCursor();
-}
-
-function checkPassword() {
-  if (input === PASSWORD) {
-    terminal.innerHTML += "<br>ACCESS GRANTED";
-    setTimeout(() => {
-      window.location.href = "home.html";
-    }, 1000);
-  } else {
-    terminal.innerHTML += "<br>ACCESS DENIED";
-    input = "";
-    setTimeout(() => {
-      terminal.innerHTML += "<br>> ";
-      updateCursor();
-    }, 500);
-  }
-}
-
-typeEffect();
-
-
-
 
