@@ -1,49 +1,61 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Coruscant Guard Database</title>
+  <title>Legion Database</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="main">
 
-<h1 class="red">Coruscant Guard Database</h1>
+<div class="container">
 
-<h2>Companies</h2>
+  <!-- LEFT CONTENT -->
+  <div class="left">
+    <h1>LEGION NAME</h1>
 
-<div class="card" onclick="openCompany('Guard')">Guard Company</div>
-<div class="card" onclick="openCompany('Riot')">Riot Company</div>
+    <h2>Overview</h2>
+    <p>
+      This is a placeholder description of the legion. Replace this text with your own lore,
+      background, and purpose. Make it detailed like a real database entry.
+    </p>
 
-<div id="content"></div>
+    <h2>Organizational Structure</h2>
+    <p>
+      This section explains how the legion is structured. You can divide it into companies,
+      units, or divisions.
+    </p>
 
-<script>
-const companies = {
-  Guard: [
-    {name: "Captain Cutter", desc: "WIP"},
-    {name: "EXAMPLE", desc: "WIP"}
-  ],
-  #Riot: [
-    {name: "Captain Fox", desc: "WIP"}
-  ]
-};
+    <h2>Companies</h2>
 
-function openCompany(name) {
-  let html = "<h3>" + name.toUpperCase() + "</h3>";
+    <div class="company" onclick="openCompany('alpha')">
+      Alpha Company
+    </div>
 
-  companies[name].forEach(member => {
-    html += `<div class="card" onclick="openMember('${member.name}', '${member.desc}')">${member.name}</div>`;
-  });
+    <div class="company" onclick="openCompany('beta')">
+      Beta Company
+    </div>
 
-  document.getElementById("content").innerHTML = html;
-}
+    <!-- MEMBERS / WIKI CONTENT -->
+    <div id="content"></div>
 
-function openMember(name, desc) {
-  document.getElementById("content").innerHTML = `
-    <h2>${name}</h2>
-    <p>${desc}</p>
-    <button onclick="location.reload()">Back</button>
-  `;
-}
-</script>
+  </div>
 
+  <!-- RIGHT INFO PANEL -->
+  <div class="right">
+    <div class="info-card">
+      <h3>INFORMATION</h3>
+
+      <p><strong>Name:</strong> Placeholder Legion</p>
+      <p><strong>In Service:</strong> ??? - Current</p>
+
+      <h4>Command</h4>
+      <p><strong>Jedi General:</strong> Placeholder</p>
+      <p><strong>Commander:</strong> Placeholder</p>
+      <p><strong>Exec Officer:</strong> Placeholder</p>
+    </div>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
